@@ -12,15 +12,40 @@ snake[0]={
     y: 8 * box,
 }
 
+let direction="right";
+
+
 function createSnake(){
     for(cont=0; cont<snake.length; cont++){
         context.fillStyle="yellow";
         context.fillRect(snake[cont].x, snake[cont].y, box, box);
-
     }
+}
+
+function startGame(){
+    criarBG();
+    createSnake();
+
+    let eixoX=snake[0].x;
+    let eixoY=snake[0].x;
+
+    if(direction == "right"){eixoX += box};
+    if(direction == "left") {eixoX -= box};
+    if(direction=="up"){eixoY -= box};
+    if(direction=="down"){eixoY += box}
+
+    snake.pop();
+
+    let newHead={
+        x:eixoX,
+        y:eixoY
+    }
+
+    snake.unshift(newHead);
+
 
 }
 
+let game=setInterval(startGame,100);
 
-criarBG();
-createSnake();
+
